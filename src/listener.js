@@ -9,7 +9,10 @@
  * Listener spawns its own event to remove itself.
  * 
  */
-export class Listener{
+
+import util from "../node_modules/lodash/lodash";
+
+export default class Listener{
 	constructor(name, cb, arr, owner) {
 		this.name = name;
 		this.cb = cb;

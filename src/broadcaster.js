@@ -20,22 +20,29 @@
  * it will remove the reference from the array, ensuring it will not be invoked
  * after the listening object has been destroyed.
  */
-export class Broadcaster {
+import Listener from "./listener";
+import util from "../node_modules/lodash/lodash";
+
+export default class Broadcaster {
 	constructor() {
 		//The listeners this object has attached to other objects events
 		this.listeners = [];
 		//A hash of listeners that this object will fire when its event is triggered.
 		this.events = {};
 	}
-	listen(name, cb, owner) {
+ 	listen(name, cb, owner) {
 		this.events[name] = this.events[name] || [];
-		let listener = new Listener(name, cb, this.events[name], owner);
+		let listener = this.createListener(name, cb, owner);
 		this.events[name].push(listener);
+		return listener;
+	}
+	createListener(name, cb, owner) {
+		return new Listener(name, cb, this.events[name], owner);
 	}
 	fire() {
-		let args = Array.slice(arguments);
-		let name = args.pop();
-		let arr = this.events[name] || [];
+		let args = Array.prototype.slice.call(arguments),
+		    name = args.shift(),
+		    arr = this.events[name] || [];
 		for(let i = 0, len = arr.length; i < len; i++) {
 			arr[i].fire(args);
 		}
@@ -43,15 +50,13 @@ export class Broadcaster {
     stopListening(param) {
 		if(util.isString(param)){
 			this.events[name] = [];
-		} else if (param instanceof Listener) {
-			param.destroy();
 		} else {
 			this.events = {};
 		}
 	}
 	destroy() {
 		util.invoke(this.listeners, 'destroy');
-		this.listeners = null;
-		this.events = null;
+		this.listeners = [];
+		this.events = {};
 	}
 }
