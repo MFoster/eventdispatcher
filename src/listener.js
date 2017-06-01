@@ -10,29 +10,29 @@
  * 
  */
 
-import util from "../node_modules/lodash/lodash";
+import util from "lodash";
 
-export default class Listener{
-	constructor(name, cb, arr, owner) {
-		this.name = name;
-		this.cb = cb;
-		this.arr = arr;
-		this.owner = owner || this;
-		this.destroyed = false;
-	}
+export default class Listener {
+    constructor(name, cb, arr, owner) {
+        this.name = name;
+        this.cb = cb;
+        this.arr = arr;
+        this.owner = owner || this;
+        this.destroyed = false;
+    }
 
-	destroy() {
-		if(this.destroyed){
-			return;
-		}
-		this.destroyed = true;
-		this.arr = util.reject(this.arr, this);
-	}
+    destroy() {
+        if (this.destroyed) {
+            return;
+        }
+        this.destroyed = true;
+        this.arr = util.reject(this.arr, this);
+    }
 
-	fire(args) {
-		if(this.destroyed){
-			return;
-		}
-		this.cb.apply(this.owner, args);
-	}
+    fire(args) {
+        if (this.destroyed) {
+            return;
+        }
+        this.cb.apply(this.owner, args);
+    }
 }

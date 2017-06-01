@@ -6,8 +6,8 @@ describe("Event broadcaster", ()=>{
         let b = new Broadcaster(),
             spy = sinon.spy();
             
-        b.listen('derp', spy);
-        b.fire('derp');
+        b.listen("derp", spy);
+        b.fire("derp");
 
         assert.isTrue(spy.calledOnce);
     });
@@ -16,10 +16,10 @@ describe("Event broadcaster", ()=>{
         let b = new Broadcaster(),
             spy = sinon.spy();
         
-        let listener = b.listen('derp', spy);
-        b.fire('derp');
+        let listener = b.listen("derp", spy);
+        b.fire("derp");
         listener.destroy();
-        b.fire('derp');
+        b.fire("derp");
 
         assert.isTrue(spy.calledOnce);
     });
@@ -28,9 +28,9 @@ describe("Event broadcaster", ()=>{
         let b = new Broadcaster(),
             spy = sinon.spy();
 
-        let listener = b.listen('derp', spy);
-        for(let i = 0; i < 10; i++){
-            b.fire('derp');
+        b.listen("derp", spy);
+        for (let i = 0; i < 10; i++) {
+            b.fire("derp");
         }
 
         assert.isTrue(10 === spy.callCount);
@@ -41,12 +41,12 @@ describe("Event broadcaster", ()=>{
             spyUno = sinon.spy(),
             spyDos = sinon.spy();
 
-        b.listen('uno', spyUno);
-        b.listen('dos', spyDos);
+        b.listen("uno", spyUno);
+        b.listen("dos", spyDos);
 
-        b.fire('uno');
-        b.fire('dos');
-        b.fire('dos');
+        b.fire("uno");
+        b.fire("dos");
+        b.fire("dos");
 
         assert.isTrue(spyUno.calledOnce);
         assert.isTrue(spyDos.calledTwice);
@@ -57,12 +57,12 @@ describe("Event broadcaster", ()=>{
         let b = new Broadcaster(),
             spy = sinon.spy();
 
-        b.listen('derp', spy);
-        b.fire('derp');
+        b.listen("derp", spy);
+        b.fire("derp");
         b.destroy();
-        b.fire('derp');
+        b.fire("derp");
 
         assert.isTrue(spy.calledOnce);
     });
     
-})
+});

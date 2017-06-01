@@ -10,6 +10,11 @@ module.exports = {
 				query: {
 					presets: ['env', 'react']
 				}
+			},
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'eslint-loader'
 			}
 		]
 	},
