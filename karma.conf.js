@@ -15,11 +15,13 @@ module.exports = function (config) {
 
         preprocessors: {
             "test/*.spec.js" : ["webpack"],
-            "src/*.js": ["webpack", "coverage"]
+            "src/*.js": ["webpack"]
         },
         coverageReporter: {
             dir: "coverage",
-            type: "html"
+            reporters: [
+                { type: "html", subdir: "derp" }
+            ]
         },
         reporters: ["progress", "coverage"],
         resolve: {

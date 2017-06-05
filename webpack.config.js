@@ -1,24 +1,21 @@
 module.exports = {
-    entry: ['babel-polyfill', './src/broadcaster.js'],
+    entry: ["babel-polyfill", "./src/broadcaster.js"],
     devtool: "source-map",
     module: {
 		loaders: [
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel-loader',
-				query: {
-					presets: ['env', 'react']
-				}
+				loader: "babel-loader"
 			},
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'eslint-loader'
+				loader: "eslint-loader"
 			}
 		]
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.json']
+		extensions: [".js", ".jsx", ".json"]
 	}
 };
