@@ -1,6 +1,5 @@
 module.exports = {
-    entry: ["babel-polyfill", "./src/broadcaster.js"],
-    devtool: "source-map",
+    entry: "./src/broadcaster.js",
     module: {
 		loaders: [
 			{

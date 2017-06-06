@@ -1,5 +1,6 @@
 import Broadcaster from "../src/broadcaster";
-
+import sinon from "sinon";
+import { assert } from "chai";
 
 describe("Event broadcaster", ()=>{
     it("should listen and fire a single event", ()=>{

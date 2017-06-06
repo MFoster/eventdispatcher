@@ -18,23 +18,23 @@
     "babel-preset-env": "^1.5.1",
     "babel-preset-react": "^6.24.1",
     "chai": "^3.5.0",
+    "coveralls": "^2.13.1",
+    "cross-env": "^5.0.0",
     "eslint": "^3.19.0",
     "eslint-loader": "^1.7.1",
     "http-server": "^0.10.0",
-    "karma": "^1.7.0",
-    "karma-chai": "^0.1.0",
-    "karma-coverage": "^1.1.1",
-    "karma-coverage-istanbul-reporter": "^1.3.0",
-    "karma-mocha": "^1.3.0",
-    "karma-phantomjs-launcher": "^1.0.4",
-    "karma-sinon": "^1.0.5",
-    "karma-webpack": "^2.0.3",
     "mocha": "^3.4.1",
+    "mocha-webpack": "^0.7.0",
+    "nyc": "^11.0.2",
     "sinon": "^2.3.2"
   },
+  "nyc": {
+    "sourceMap": false,
+    "instrument": false
+  },
   "scripts": {
-    "test": "node_modules/karma/bin/karma start karma.conf.js",
-    "coverage": "node_modules/http-server/bin/http-server coverage"
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha-webpack test/*.spec.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "MFoster",
   "license": "MIT"
