@@ -2,11 +2,7 @@
   "presets": ["env", "react"],
   "env": {
     "test": {
-      "plugins": [ "istanbul", {
-          "exclude": [
-            "**/*.spec.js"
-          ]
-        } ]
+      "plugins": ["istanbul"]
     }
   }
 }
