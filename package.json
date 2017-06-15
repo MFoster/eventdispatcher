@@ -33,7 +33,9 @@
   "nyc": {
     "instrument": false,
     "reporter": [
-      "lcov"
+      "lcov",
+      "html",
+      "text"
     ]
   },
   "scripts": {
