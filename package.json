@@ -33,14 +33,13 @@
   "nyc": {
     "instrument": false,
     "reporter": [
-      "lcov",
-      "text",
-      "html"
+      "lcov"
     ]
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha-webpack --inline-diffs",
-    "coverage": "nyc npm test"
+    "test": "NODE_ENV=test mocha-webpack",
+    "coverage": "nyc npm test",
+    "coverall": "npm run coverage && coveralls > coverage/lcov.info"
   },
   "author": "MFoster",
   "license": "MIT"
