@@ -39,7 +39,7 @@
   "scripts": {
     "test": "NODE_ENV=test mocha-webpack",
     "coverage": "nyc npm test",
-    "coverall": "npm run coverage && coveralls > coverage/lcov.info"
+    "coveralls": "npm run coverage && cat coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "author": "MFoster",
   "license": "MIT"
