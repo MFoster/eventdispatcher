@@ -1,24 +1,23 @@
+var path = require("path");
+
 module.exports = {
-    entry: ['babel-polyfill', './src/broadcaster.js'],
-    devtool: "source-map",
+    entry: "./src/broadcaster.js",
+    devtool: "cheap-module-source-map",
     module: {
 		loaders: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader',
-				query: {
-					presets: ['env', 'react']
-				}
-			},
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: 'eslint-loader'
-			}
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ["babel-loader"]
+            },
+            {
+                test: /src.+\.js$/,
+                exclude: /node_modules/,
+                use: ["istanbul-instrumenter-loader", "babel-loader"]
+            }
 		]
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.json']
+		extensions: [".js", ".jsx", ".json"]
 	}
 };
