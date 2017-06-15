@@ -1,24 +1,20 @@
+var path = require("path");
+
 module.exports = {
     entry: "./src/broadcaster.js",
+    devtool: "cheap-module-source-map",
     module: {
 		loaders: [
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: "babel-loader"
-                },
-                {
-                    test: /\.js$/,
-                    exclude: /node_modules/,
-                    loader: "eslint-loader"
-                },
-                // instrument only testing sources with Istanbul
-                {
-                    test: /\.js$/,
-                    include: path.resolve("src/"),
-                    loader: "istanbul-instrumenter-loader"
-                }
-            ]
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ["babel-loader"]
+            },
+            {
+                test: /src.+\.js$/,
+                exclude: /node_modules/,
+                use: ["istanbul-instrumenter-loader", "babel-loader"]
+            }
 		]
 	},
 	resolve: {
