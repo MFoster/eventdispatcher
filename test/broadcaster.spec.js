@@ -65,5 +65,12 @@ describe("Event broadcaster", ()=>{
 
         assert.isTrue(spy.calledOnce);
     });
+
+    it("should be able to call destroy twice", ()=>{
+        let b = new Broadcaster();
+
+        b.destroy();
+        b.destroy();
+    })
     
 });

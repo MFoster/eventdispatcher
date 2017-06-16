@@ -34,13 +34,14 @@
     "instrument": false,
     "reporter": [
       "lcov",
-      "text",
-      "html"
+      "html",
+      "text"
     ]
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha-webpack --inline-diffs",
-    "coverage": "nyc npm test"
+    "test": "NODE_ENV=test mocha-webpack",
+    "coverage": "nyc npm test",
+    "coveralls": "npm run coverage && cat coverage/lcov.info | node node_modules/.bin/coveralls"
   },
   "author": "MFoster",
   "license": "MIT"
