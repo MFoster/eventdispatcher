@@ -53,7 +53,8 @@ export default class Broadcaster {
 
     stopListening(param) {
         if (util.isString(param)) {
-            this.events[name] = [];
+            util.invoke(this.events[param], 'destroy');
+            this.events[param] = [];
         } else {
             this.events = {};
         }

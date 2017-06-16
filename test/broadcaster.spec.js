@@ -66,11 +66,49 @@ describe("Event broadcaster", ()=>{
         assert.isTrue(spy.calledOnce);
     });
 
+    it("should stop listening to one event by name", ()=>{
+        let b = new Broadcaster(),
+            spyUno = sinon.spy(),
+            spyDos = sinon.spy();
+        
+        b.listen("one", spyUno);
+        b.listen("two", spyDos);
+        b.fire("one");
+        b.fire("two");
+        b.stopListening("one");
+        b.fire("one");
+        b.fire("two")
+
+        assert.isTrue(spyUno.calledOnce);
+        assert.isTrue(spyDos.calledTwice);
+    });
+
     it("should be able to call destroy twice", ()=>{
         let b = new Broadcaster();
+        
+        let listener = b.listen("derp");
 
-        b.destroy();
-        b.destroy();
-    })
-    
+        listener.destroy();
+        listener.destroy();
+    });
+
+    it("should clear all events when stopListening is sent no name", ()=>{
+        let b = new Broadcaster(),
+            spy = sinon.spy();
+        
+        const cannon = ()=>{
+            b.fire("one");
+            b.fire("two");
+            b.fire("three");
+        };
+
+        b.listen("one", spy);
+        b.listen("two", spy);
+        b.listen("three", spy);
+        cannon();
+        b.stopListening();
+        cannon();
+
+        assert.isTrue(spy.calledThrice);
+    });
 });
