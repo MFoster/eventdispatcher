@@ -1,8 +1,8 @@
 {
-  "name": "eventdispatcher",
+  "name": "traffic-dispatch",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/broadcaster.js",
   "dependencies": {
     "lodash": "^4.17.4",
     "webpack": "^2.6.0"
