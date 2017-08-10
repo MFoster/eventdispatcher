@@ -1,8 +1,8 @@
 {
   "name": "traffic-dispatch",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
-  "main": "src/broadcaster.js",
+  "main": "build/TrafficDispatch.js",
   "dependencies": {
     "lodash": "^4.17.4",
     "webpack": "^2.6.0"
@@ -23,6 +23,7 @@
     "nyc": "^11.0.2",
     "sinon": "^2.3.2"
   },
+  "files":["build"],
   "nyc": {
     "instrument": false,
     "reporter": [
@@ -34,7 +35,8 @@
   "scripts": {
     "test": "NODE_ENV=test mocha-webpack",
     "coverage": "nyc npm test",
-    "coveralls": "npm run coverage && cat coverage/lcov.info | node node_modules/.bin/coveralls"
+    "coveralls": "npm run coverage && cat coverage/lcov.info | node node_modules/.bin/coveralls",
+    "build": "node node_modules/.bin/webpack --config webpack.config.js"
   },
   "author": "MFoster",
   "license": "MIT"
